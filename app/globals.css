@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-off-white: #ffffff;
+  --color-slate-text: #1A1F36;
+  --color-pistachio: #93C572;
+  --color-mustard: #E1AD01;
+  
+  /* Fonts */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+body {
+  background-color: var(--color-off-white);
+  color: var(--color-slate-text);
+  font-family: var(--font-body); /* Makes Scheherazade New the default text */
+}
