@@ -45,7 +45,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [authError, setAuthError] = useState("");
-  
+
   const supabase = createClient();
   const router = useRouter();
 
@@ -67,16 +67,18 @@ export default function LoginPage() {
     if (authError) {
       setAuthError("البريد الإلكتروني أو كلمة السر غير صحيحة");
     } else if (authData.user) {
-      // Fetch profile to check onboarding status
+      // Fetch profile to check onboarding status and role
       const { data: profile } = await supabase
         .from('profiles')
-        .select('onboarding_completed')
+        .select('onboarding_completed, role')
         .eq('id', authData.user.id)
         .single();
 
-      // Redirect based on whether they finished onboarding or not
+      // Redirect based on role and onboarding status
       if (!profile?.onboarding_completed) {
         router.push("/onboarding");
+      } else if (profile.role === 'creator') {
+        router.push("/dashboard/creator");
       } else {
         router.push("/dashboard");
       }
@@ -84,14 +86,14 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-6 text-slate-700" dir="rtl">
+    <main className="min-h-screen bg-offwhite flex flex-col items-center justify-center p-6 text-slate-text" dir="rtl">
       <div className="w-full max-w-md flex flex-col items-center space-y-6">
         <div className="text-center">
-           <AnimatedLogo className="text-5xl mb-2" />
-           <h2 className="text-2xl font-bold">سجل دخولك إلى noOrSpace</h2>
+          <AnimatedLogo className="text-5xl mb-2" />
+          <h2 className="text-3xl font-extrabold">سجل دخولك إلى noOrSpace</h2>
         </div>
 
-        <div className="w-full bg-white shadow-sm rounded-2xl border border-slate-200 overflow-hidden">
+        <div className="w-full bg-white card-section overflow-hidden">
           <div className="relative">
             <input
               type="email"
@@ -109,7 +111,7 @@ export default function LoginPage() {
               className={`w-full p-5 focus:outline-none text-right text-lg transition-all ${errors.password || authError ? 'bg-red-50' : ''}`}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
+            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 cursor-pointer">
               {showPassword ? (
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12c1.29 4.037 4.857 7 9.066 7 1.94 0 3.763-.63 5.258-1.703m1.384-1.384A10.446 10.446 0 0 0 22.066 12c-1.29-4.037-4.857-7-9.066-7-1.5 0-2.907.404-4.12 1.11m0 0L3.75 3.75M12 15a3 3 0 0 1-3-3m1.5-4.875L12 12m0 0 8.25 8.25" /></svg>
               ) : (
@@ -122,13 +124,19 @@ export default function LoginPage() {
 
         {authError && <p className="text-red-600 font-bold text-sm text-center bg-red-50 py-2 w-full rounded-xl border border-red-100">{authError}</p>}
 
-        <button onClick={handleLogin} className="w-full bg-[#E6C65D] text-slate-800 py-4 rounded-2xl font-bold text-xl shadow-md hover:opacity-90 transition-all active:scale-[0.98]">دخول</button>
+        {/* Updated Button with cursor-pointer */}
+        <button
+          onClick={handleLogin}
+          className="btn-primary w-full py-4 font-bold text-xl shadow-lg active:scale-[0.98]"
+        >
+          دخول
+        </button>
 
-        <div className="w-full flex justify-between items-center text-sm font-bold">
-          <a href="/forgot-password" className="text-blue-600 hover:underline">نسيت كلمة السر ؟</a>
+        <div className="w-full flex flex-col sm:flex-row sm:justify-between items-center gap-3 text-sm font-bold">
+          <a href="/forgot-password" className="text-blue-slate hover:underline">نسيت كلمة السر ؟</a>
           <div className="flex items-center gap-2 text-slate-500">
             <span>تذكرني</span>
-            <input type="checkbox" className="w-4 h-4 rounded-full accent-slate-300" />
+            <input type="checkbox" className="w-4 h-4 rounded-full accent-slate-300 cursor-pointer" />
           </div>
         </div>
 
@@ -138,9 +146,9 @@ export default function LoginPage() {
           <div className="flex-1 h-px bg-slate-200"></div>
         </div>
 
-        <GoogleSignIn className="w-full bg-slate-900 text-white border-none hover:bg-slate-800 justify-center" />
+        <GoogleSignIn className="w-full bg-slate-900 text-white border-none hover:bg-slate-800 justify-center cursor-pointer" />
 
-        <p className="font-bold text-sm">ليس لديك حساب؟ <a href="/signup" className="text-blue-600 hover:underline">أنشئ حسابك الآن</a></p>
+        <p className="font-bold text-sm">ليس لديك حساب؟ <a href="/signup" className="text-blue-slate hover:underline">أنشئ حسابك الآن</a></p>
       </div>
     </main>
   );

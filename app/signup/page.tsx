@@ -114,7 +114,7 @@ export default function SignupPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-6 text-slate-700" dir="rtl">
+    <main className="min-h-screen bg-offwhite flex flex-col items-center justify-center p-6 text-slate-text" dir="rtl">
       <div className="w-full max-w-md flex flex-col items-center space-y-6">
 
         <div className="text-center">
@@ -122,7 +122,7 @@ export default function SignupPage() {
           <h2 className="text-2xl font-bold">أنشئ حسابك في noOrSpace</h2>
         </div>
 
-        <div className="w-full bg-white shadow-sm rounded-2xl border border-slate-200 overflow-hidden">
+        <div className="w-full bg-white card-section overflow-hidden">
           {/* NAME FIELD */}
           <div className="relative">
             <input
@@ -189,13 +189,13 @@ export default function SignupPage() {
         <button
           onClick={handleSignup}
           disabled={loading}
-          className="w-full bg-[#E6C65D] text-slate-800 py-4 rounded-2xl font-bold text-xl shadow-md hover:opacity-90 transition-all active:scale-[0.98] disabled:opacity-50"
+          className="btn-primary w-full py-4 font-bold text-xl disabled:opacity-50"
         >
           {loading ? "جاري الإنشاء..." : "إنشاء"}
         </button>
 
         <p className="text-[11px] text-slate-400 text-center leading-relaxed px-4 font-bold">
-          بالتسجيل، فإنك توافق على <span className="text-blue-600 cursor-pointer">شروطنا</span> و <span className="text-blue-600 cursor-pointer">سياسة الخصوصية</span> الخاصة بنا.
+          بالتسجيل، فإنك توافق على <span className="text-blue-slate cursor-pointer">شروطنا</span> و <span className="text-blue-slate cursor-pointer">سياسة الخصوصية</span> الخاصة بنا.
         </p>
 
         <div className="w-full flex items-center gap-4 py-1">

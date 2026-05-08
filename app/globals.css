@@ -1,19 +1,88 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-off-white: #ffffff;
-  --color-slate-text: #1A1F36;
+  --color-off-white: #F8F9F4;
   --color-pistachio: #93C572;
   --color-mustard: #E1AD01;
-  
-  /* Fonts */
+  --color-blue-slate: #2F4F7D;
+  --color-slate-text: #111318;
+  --color-surface: #ffffff;
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--color-off-white);
   color: var(--color-slate-text);
-  font-family: var(--font-body); /* Makes Scheherazade New the default text */
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(147, 197, 114, 0.25);
+  color: var(--color-slate-text);
+}
+
+.card-surface {
+  background: var(--color-surface);
+  border: 1px solid rgba(17, 17, 24, 0.08);
+  border-radius: 2rem;
+  box-shadow: 0 24px 80px rgba(17, 17, 24, 0.06);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-pistachio) 0%, var(--color-mustard) 100%);
+  color: var(--color-slate-text);
+  border-radius: 1.75rem;
+  box-shadow: 0 14px 30px rgba(147, 197, 114, 0.2);
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(47, 79, 125, 0.08);
+  color: var(--color-blue-slate);
+  border-radius: 1.5rem;
+}
+
+.input-surface {
+  background: #F6F7F2;
+  border: 1px solid rgba(17, 17, 24, 0.08);
+  border-radius: 1.5rem;
+}
+
+.input-surface:focus {
+  outline: none;
+  border-color: var(--color-pistachio);
+  box-shadow: 0 0 0 5px rgba(147, 197, 114, 0.12);
+}
+
+.card-section {
+  background: white;
+  border-radius: 2rem;
+  border: 1px solid rgba(17, 17, 24, 0.08);
+  box-shadow: 0 20px 50px rgba(17, 17, 24, 0.05);
 }

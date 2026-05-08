@@ -65,7 +65,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-6 text-slate-700" dir="rtl">
+    <main className="min-h-screen bg-offwhite flex flex-col items-center justify-center p-6 text-slate-text" dir="rtl">
       <div className="w-full max-w-md flex flex-col items-center space-y-8">
         <div className="text-center">
            <AnimatedLogo className="text-5xl mb-4" />
@@ -73,11 +73,11 @@ export default function ForgotPasswordPage() {
            <p className="text-slate-500 mt-2 text-sm">أدخل بريدك الإلكتروني وسنرسل لك رابطاً للعودة إلى حسابك.</p>
         </div>
 
-        <div className="w-full bg-white shadow-sm rounded-2xl border border-slate-200 overflow-hidden">
+        <div className="w-full bg-white card-section overflow-hidden">
           <input
             type="email"
             placeholder="البريد الإلكتروني"
-            className="w-full p-5 focus:outline-none text-right text-lg"
+            className="w-full p-5 input-surface focus:outline-none text-right text-lg"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -87,12 +87,12 @@ export default function ForgotPasswordPage() {
 
         <button 
           onClick={handleReset}
-          className="w-full bg-[#E6C65D] text-slate-800 py-4 rounded-2xl font-bold text-xl shadow-md hover:opacity-90 transition-all"
+          className="btn-primary w-full py-4 font-bold text-xl"
         >
           إرسال الرابط
         </button>
 
-        <a href="/login" className="text-blue-600 font-bold hover:underline text-sm">العودة لتسجيل الدخول</a>
+        <a href="/login" className="text-blue-slate font-bold hover:underline text-sm">العودة لتسجيل الدخول</a>
       </div>
     </main>
   );

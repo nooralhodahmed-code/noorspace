@@ -79,7 +79,7 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-6 text-slate-700" dir="rtl">
+    <main className="min-h-screen bg-offwhite flex flex-col items-center justify-center p-6 text-slate-text" dir="rtl">
       <div className="w-full max-w-md flex flex-col items-center space-y-8">
         <div className="text-center">
            <AnimatedLogo className="text-5xl mb-4" />
@@ -87,12 +87,12 @@ export default function UpdatePasswordPage() {
            <p className="text-slate-500 mt-2 text-sm">أدخل كلمة السر الجديدة للوصول إلى حسابك.</p>
         </div>
 
-        <div className="w-full bg-white shadow-sm rounded-2xl border border-slate-200 overflow-hidden">
+        <div className="w-full bg-white card-section overflow-hidden">
           <div className="relative">
             <input
               type={showPass ? "text" : "password"}
               placeholder="كلمة السر الجديدة"
-              className="w-full p-5 border-b border-slate-100 focus:outline-none text-right text-lg"
+              className="w-full p-5 input-surface focus:outline-none text-right text-lg"
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="button" onClick={() => setShowPass(!showPass)} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
@@ -107,7 +107,7 @@ export default function UpdatePasswordPage() {
             <input
               type={showConfirm ? "text" : "password"}
               placeholder="تأكيد كلمة السر"
-              className="w-full p-5 focus:outline-none text-right text-lg"
+              className="w-full p-5 input-surface focus:outline-none text-right text-lg"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
@@ -123,7 +123,7 @@ export default function UpdatePasswordPage() {
         {error && <p className="text-red-500 font-bold text-sm text-center">{error}</p>}
         {message && <p className="text-[#8CAB46] font-bold text-sm text-center">{message}</p>}
 
-        <button onClick={handleUpdate} className="w-full bg-[#E6C65D] text-slate-800 py-4 rounded-2xl font-bold text-xl shadow-md hover:opacity-90 transition-all">تحديث كلمة السر</button>
+        <button onClick={handleUpdate} className="btn-primary w-full py-4 font-bold text-xl">تحديث كلمة السر</button>
       </div>
     </main>
   );
